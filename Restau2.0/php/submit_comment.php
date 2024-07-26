@@ -1,9 +1,9 @@
 <?php
-ob_start(); // Démarrer la mise en tampon de sortie
+ob_start(); // Démarre la mise en tampon de sortie
 
-$servername = "mysql"; // Utilisez le nom du service Docker pour MySQL
+$servername = "mysql"; // Nom du service Docker pour MySQL
 $username = "root";
-$password = "pass"; // Remplacez par votre mot de passe MySQL
+$password = "pass"; // Mot de passe MySQL
 $dbname = "comments";
 
 // Créer une connexion
@@ -14,10 +14,10 @@ if ($conn->connect_error) {
     die("Échec de la connexion : " . $conn->connect_error);
 }
 
-// Vérifiez que les données du formulaire ont été envoyées
+// Vérifie que les données du formulaire ont été envoyées
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['name'], $_POST['email'], $_POST['comment'])) {
-        // Récupérer les données du formulaire
+        // Récupére les données du formulaire
         $name = $_POST['name'];
         $email = $_POST['email'];
         $comment = $_POST['comment'];
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Email : " . htmlspecialchars($email) . "<br>";
         echo "Commentaire : " . htmlspecialchars($comment) . "<br>";
 
-        // Préparer et exécuter la requête SQL
+        // Prépare et exécute la requête SQL
         $sql = "INSERT INTO comments (name, email, comment) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $name, $email, $comment);
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Erreur : " . $sql . "<br>" . $conn->error;
         }
 
-        // Fermer la connexion
+        // Ferme la connexion
         $stmt->close();
     } else {
         echo "Tous les champs sont requis.";

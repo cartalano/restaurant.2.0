@@ -1,7 +1,7 @@
 <?php
-$servername = "mysql"; // Utilisez le nom du service Docker pour MySQL
+$servername = "mysql"; // nom du service Docker pour MySQL
 $username = "root";
-$password = "pass"; // Remplacez par votre mot de passe MySQL
+$password = "pass"; // mot de passe MySQL
 $dbname = "comments";
 
 // Créer une connexion
